@@ -12,7 +12,7 @@
 // echo date("l, d-M-Y")
 
 // Time
-// UNIX TImestamp / EPOCH Time
+// UNIX Timestamp / EPOCH Time
 // waktu yang sudah berallu sejak 1 jan 1970
 
 //echo time();
