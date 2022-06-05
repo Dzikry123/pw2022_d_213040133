@@ -1,0 +1,370 @@
+body {
+  background-color: #f8f8ff;
+  font-family: calibri;
+}
+
+.container {
+  margin: 60px auto;
+  width: 80%;
+  border: 2px solid #bbb;
+  box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.5);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    'profil detail detail'
+    'profil detail detail'
+    'profil detail detail';
+}
+
+.card-profil {
+  grid-area: profil;
+  border-right: 2px solid #bbb;
+}
+
+.card-profil img {
+  width: 70%;
+  display: block;
+  margin: 40px auto 25px auto;
+  border: 3px solid rgba(0,0,0,0.5);
+  border-radius: 5%;
+}
+
+.card-profil p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: calibri;
+}
+
+.detail {
+  grid-area: detail;
+  display: grid;
+  justify-content: space-evenly;
+  /*box-shadow: 0px -0.5px 8px 5px rgba(0,0,0,0.5);*/
+  padding: 12px 30px;
+  margin: 8px auto 0 auto;
+  box-sizing: border-box;
+}
+
+/* Head */
+.detail h3 {
+  text-align: center;
+  font-size: 25px;
+  font-family: calibri;
+  font-weight: bold;
+}
+
+.text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  'left right'
+  'link link'
+  'pdf pdf'
+  'home home';
+  margin: 0 45px;
+  border-radius: 10px;
+  width: 85%;
+}
+
+.left-text {
+  display: grid;
+  grid-area: left;
+  grid-template-columns: 1fr;
+}
+
+.left-text p {
+  display: block;
+  background-color: #008000;
+  padding: 10px 10px 10px 20px;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+  color: white;
+  font-family: calibri;
+}
+
+.left-text .corner-top {
+  border-top-left-radius: 7px;
+}
+
+.left-text .corner-bottom {
+  border-bottom-left-radius: 7px;
+}
+
+.right-text {
+  display: grid;
+  grid-area: right;
+  grid-template-columns: 1fr;
+}
+
+.right-text p {
+  display: block;
+  background-color: navy;
+  padding: 10px 10px 10px 20px;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+  color: white;
+  font-family: calibri;
+}
+
+.right-text .corner-top {
+  border-top-right-radius: 7px;
+}
+
+.right-text .corner-bottom {
+  border-bottom-right-radius: 7px;
+}
+
+/* tombol ubah & hapus */
+
+.link {
+  display: grid;
+  grid-area: link;
+  grid-template-areas: 
+  'ubah hapus';
+  margin: 20px 0 20px -50px;
+}
+.ubah {
+  grid-area: ubah;
+  display: block;
+  background-color: #00887a;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 80px;
+  margin: 10px 50px 10px 100px;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 4px black;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+.ubah:hover {
+  opacity: 0.9;
+  box-shadow: 0 5px 2px black;
+}
+.hapus {
+  grid-area: hapus;
+  display: block;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 80px;
+  margin: 10px 100px 10px 0;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 4px black;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+.hapus:hover {
+  opacity: 0.9;
+  box-shadow: 0 5px 2px black;
+}
+
+/* tombol PDF Report*/
+.report {
+  display: block;
+  grid-area: pdf;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px;
+  margin: 30px 100px 10px 100px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 4px black;
+  border-radius: 10px;
+}
+.report:hover {
+  opacity: 0.9;
+  box-shadow: 0 5px 2px black;
+}
+
+/* tombol kembali */
+.home {
+  display: block;
+  grid-area: home;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px;
+  margin: 12px 100px;
+  border-radius: 10px;
+}
+.home:hover {
+  opacity: 0.9;
+}
+
+/* Responsive breakpoint */
+
+@media (max-width: 1024px) {
+  .container {
+    margin-top: 60px;
+    width: 90%;
+  }
+  .card-profil img {
+    width: 75%;
+  }
+  .detail h3 {
+    margin-left: 0px;
+  }
+  .text {
+    width: 85%;
+    margin-left: 40px;
+  }
+  .link {
+    margin-left: -100px;
+  }
+  .ubah {
+    padding: 10px 70px;
+    margin: 10px 40px 10px 100px;
+  }
+  .hapus {
+    padding: 10px 70px;
+    margin: 10px 100px 10px 35px;
+  }
+  .report {
+    margin: 10px 25px 15px 25px;
+  }
+  .home {
+    margin: 10px 25px 10px 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-areas: 
+    'profi profil profil'
+    'detail detail detail'
+    'detail detail detail';
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card-profil {
+    border-right: none;
+    margin-right: 200px;
+  }
+  .card-profil img {
+    width: 85%;
+  }
+  .card-profil p {
+    margin-left: -7px
+  }
+  .detail {
+    border-top: 3px solid #bbb;
+  }
+  .detail h3 {
+    margin-left: 10px;
+  }
+  .text {
+    margin-left: 46px;
+  }
+  .ubah {
+    margin: 10px 0px 10px 140px;
+  }
+  .hapus {
+    margin: 10px 35px 10px 35px;
+  }
+  .report {
+    margin: 10px 14px 15px 25px;
+  }
+  .home {
+    margin: 10px 15px 20px 25px;
+  }
+}
+
+@media (max-width: 500px) {
+  .card-profil {
+    width: 60%;
+    margin-left: -18px;
+  }
+  .card-profil img {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .card-profil p {
+    margin-left: 0px;
+  }
+  .detail h3 {
+    margin-left: 0px;
+  }
+  .text {
+    margin-left: 0px;
+    width: 100%;
+  }
+  .link {
+    margin-left: -135px;
+  }
+  .ubah {
+    padding: 10px 50px;
+  }
+  .hapus {
+    margin: 10px 35px 10px 28px;
+    padding: 10px 50px;
+  }
+}
+
+@media (max-width: 378px) {
+  .container {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .card-profil {
+    width: 80%;
+    margin-left: -30px;
+  }
+  .card-profil img {
+    margin-left: -8px;
+  }
+  .card-profil p {
+    margin-left: -15px;
+  }
+  .detail h3 {
+    margin-left: -30px;
+    font-size: 25px
+  }
+  .text {
+    white-space: pre;
+    font-size: 14px;
+    margin-left: -15px
+  }
+  .link {
+    margin-left: -140px;
+    font-size: 12px;
+  }
+  .ubah {
+    padding: 10px 30px;
+  }
+  .hapus {
+    margin: 10px 0px 10px 30px;
+    padding: 10px 30px;
+  }
+  .report {
+    margin: 10px 0px 15px 0px;
+  }
+  .home {
+    margin: 10px 0px 20px 0px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

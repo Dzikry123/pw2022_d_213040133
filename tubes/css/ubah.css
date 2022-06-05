@@ -1,0 +1,218 @@
+body {
+  background-color: #f8f8ff;
+  font-family: calibri;
+}
+
+form {
+  border: 3px solid #f1f1f1;
+  width: 60%;
+  margin: 30px auto 30px auto;
+  box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.5);
+}
+
+/* head */
+.heading {
+  display: grid;
+  justify-content: center;
+  margin: 20px auto 20px auto;
+}
+
+input[type='text'],
+input[type='password'] {
+  width: 85%;
+  padding: 12px 20px;
+  margin: 8px 0 8px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type='email'] {
+  width: 85%;
+  padding: 12px 20px;
+  margin: 8px 0 8px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+label {
+ margin-left: 21px;
+}
+
+img {
+  margin: 10px 0 10px 30px;
+}
+
+li {
+  list-style: none;
+}
+
+li .gambar {
+  margin: 15px 0;
+}
+
+button {
+  background-color: #04aa6d;
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  padding: 14px 14px;
+  margin: 8px 70px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  border-radius: 10px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* tombol kembali */
+.home {
+  display: block;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 5px 0px;
+  margin: 10px 70px;
+  width: 80%;
+  border-radius: 10px;
+}
+.home:hover {
+  opacity: 0.9;
+}
+
+/* Responsive Breakpoint */
+
+@media (max-width: 1024px) {
+  form {
+    width: 80%;
+  }
+
+  input[type='text'] {
+  width: 85%;
+  padding: 10px 10px;
+  }
+  input[type='email'] {
+  width: 85%;
+  padding: 10px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 90%;
+    font-size: 15px;
+  }
+  input[type='text'] {
+    margin: 8px 0 8px 30px;
+    padding: 10px 10px;
+  }
+  input[type='email'] {
+    margin: 8px 0 8px 30px;
+    padding: 10px 10px;
+  }
+  label {
+ margin-left: 30px;
+  }
+  img {
+  margin: 10px 0 10px 50px;
+  }
+   /*input gambar*/
+  .gambar {
+  margin: 20px 0 0 50px;
+  }
+
+  button {
+  font-size: 18px;
+  padding: 10px 14px;
+  margin: 20px 0px 0px 55px;
+  }
+  .home {
+    font-size: 12px;
+    margin: 10px 0px 8px 55px;
+  }
+}
+
+@media (max-width: 578px) {
+  form {
+    width: 85%;
+  }
+  .heading {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 578px) {
+  form {
+    width: 85%;
+  }
+  .heading {
+    font-size: 18px;
+  }
+  input[type='text'] {
+    margin: 8px 0px 8px 20px;
+    padding: 8px 10px;
+  }
+  input[type='email'] {
+    margin: 8px 0 8px 20px;
+    padding: 8px 10px;
+  }
+  label {
+    margin-left: 22px;
+    font-size: 14px;
+  }
+  img {
+    margin: 10px 0 10px 20px;
+    width: 30%;
+  }
+  button {
+     margin: 20px 0px 8px 40px;
+     padding: 8px 12px;
+     font-size: 15px;
+  }
+  .home {
+     margin: 10px 0px 8px 40px;
+     font-size: 12px;
+  }
+}
+
+@media (max-width: 378px) {
+  .heading {
+    font-size: 15px;
+  }
+  input[type='text'] {
+    margin: 8px 0px 8px 0px;
+    padding: 5px 7px;
+  }
+  input[type='email'] {
+    margin: 8px 0px 8px 0px;
+    padding: 5px 7px;
+  }
+  label {
+    margin-left: 3px;
+    font-size: 12px;
+  }
+  img {
+    margin: 0px 0 10px 0px;
+    width: 40%;
+  }
+  /*input gambar*/
+  .gambar {
+     margin: 10px 0 0px 0px;
+     font-size: 11px;
+  }
+  button {
+    margin: 20px 0px 8px 23px;
+     padding: 6px 12px;
+     font-size: 12px;
+  }
+  .home {
+     margin: 0px 0px 15px 20px;
+     padding: 5px 3px;
+     font-size: 10px;
+  }
+}
