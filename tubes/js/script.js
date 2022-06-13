@@ -6,6 +6,7 @@ const container = document.querySelector('.container');
 tombolCari.style.display = 'none';
 
 // event saat kita menuliskan keyword
+// keyup = ketika kita menuliskan sesuatu, lalu kita melepaskan tombolnya
 keyword.addEventListener('keyup', function () {
   // ajax
 
@@ -18,6 +19,9 @@ keyword.addEventListener('keyup', function () {
   //   }
   // };
 
+  // 200 = halaman tujuan ada
+  // 4 = sumber halaman dari ajax sudah siap
+
   // xhr.open('get', 'ajax/ajax_cari.php?keyword=' + keyword.value);
   // xhr.send();
 
@@ -25,6 +29,9 @@ keyword.addEventListener('keyup', function () {
   fetch('ajax/ajax_cari.php?keyword=' + keyword.value)
     .then((response) => response.text())
     .then((response) => (container.innerHTML = response));
+
+    // saat data dikembalikan, respon yang didapatkan = response.text()
+    // lalu then lagi dan respon yang didapatkan = (container.innerHTML = response))
 });
 
 // PReview image untuk Tambah dan Ubah

@@ -20,6 +20,8 @@ if (!isset($_GET['id']))
   exit;
 }
 
+
+// jika menghasilkan nilai > 0 ( berhasil )
 if ( hapus ( $id ) > 0 ) {
   echo "<script> 
         alert( 'Data berhasil dihapus');

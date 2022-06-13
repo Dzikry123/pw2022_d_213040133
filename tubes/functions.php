@@ -4,27 +4,75 @@
 function koneksi () 
 {
   return mysqli_connect('localhost', 'root', '', 'tubes_213040133');
+  // msqli : untuk menghubungkan php dengan database
+  // parameter mysqli : (host, username, password, nama database(DB) )
 }
+
+
  // Query isi tabel dokter
  function query ($query)
 {
+    // 
     $conn = koneksi();
     
+    // msqli_query : jalankan query yang ada di database
+    // $query : parameter untuk mengirmkan datanya
+
     $result = mysqli_query($conn, $query);
   
-    // jika data hanya ada satu
+    // jika data hanya ada satu ( ex : href ke detail.php)
     if (mysqli_num_rows($result) == 1 ) {
       return mysqli_fetch_assoc($result);
+
+      //mysqli_fetch_assoc($result);  - array assosiatif
+
     }
 
+    //buat array kosong yang akan diisi data didalam array
      $rows = [];
+     // looping sejumlah array yang ada > selama masih ada datanya, lakukan looping
  while ($row = mysqli_fetch_assoc($result)) {
+  // $rows kosong diisi dengan array $row
    $rows [] = $row;
  }
 
    return $rows;
+}
+
+ function tambah($data) 
+ {
+   $conn = koneksi();
+
+   $nama = htmlspecialchars ($data['nama']) ;
+   $kode_dr = htmlspecialchars ($data['kode_dr']) ;
+   $email = htmlspecialchars ($data['email']);
+   $spesialis = htmlspecialchars ($data['spesialis']);
+  //  $gambar = htmlspecialchars ($data['gambar']);
+
+  // upload gambar
+   $gambar = upload();
+   if(!$gambar) {
+     return false;
+   }
+
+   $query = "INSERT INTO
+                dokter
+              VALUES
+              (null, '$nama', '$kode_dr', '$email', '$spesialis', '$gambar');
+              ";
+   
+   // jalankan query nya
+   mysqli_query($conn, $query) or die (mysqli_error($conn));
+   
+   // or die jika data gagal ditambahkan atau cara dua 
+   // cara dua - jika data gagal ditambahkan
+   
+   //echo mysqli_error($conn);
+
+   // untuk menghasilkan angka & memberitahu mysql yg berubah dimysql baik bertambah,hilang/dihapus atau dimodifikasi
+   return mysqli_affected_rows($conn);
  }
- 
+
  function upload()
  {
    $nama_file = $_FILES['gambar']['name'];
@@ -41,10 +89,15 @@ function koneksi ()
     
     return 'nophoto.jpg';
    }
-    // check ekstnesi file
+    // check ekstensi file
     $daftar_gambar = ['jpg', 'jpeg', 'png'];
     $ekstensi_file = explode('.', $nama_file);
     $ekstensi_file = strtolower(end($ekstensi_file));
+
+    // explode = untuk memecah nama file menjadi ( nama file + ekstensi file )
+    // dipecah mengunakan '.' dan $namafile
+    // strlower = jadi huruf kecil
+    // end = mengambil nama terakhir (ekstensinya) 
     
     //jika ekstensi file tidak sesuai dengan daftarfile yang diatas / yng tlh disediakan
     if(!in_array($ekstensi_file, $daftar_gambar)) {
@@ -55,7 +108,8 @@ function koneksi ()
     return false;
     }
 
-    //check tipe file
+    //check tipe file untuk menghindari script jahat bertipe jpg,jpeg,png
+    // 'image/jpeg' = tipe image yang ekstensinya jpeg
     if($tipe_file != 'image/jpeg' && $tipe_file != 'image/png' ) {
       echo "<script>
             alert('file gambar yang anda pilih tidak dapat diupload')
@@ -86,39 +140,6 @@ function koneksi ()
     return $nama_file_baru;
   }
 
- function tambah($data) 
- {
-   $conn = koneksi();
-
-   $nama = htmlspecialchars ($data['nama']) ;
-   $kode_dr = htmlspecialchars ($data['kode_dr']) ;
-   $email = htmlspecialchars ($data['email']);
-   $spesialis = htmlspecialchars ($data['spesialis']);
-  //  $gambar = htmlspecialchars ($data['gambar']);
-
-  // upload gambar
-   $gambar = upload();
-   if(!$gambar) {
-     return false;
-   }
-
-   $query = "INSERT INTO
-                dokter
-              VALUES
-              (null, '$nama', '$kode_dr', '$email', '$spesialis', '$gambar');
-              ";
-
-   mysqli_query($conn, $query) or die (mysqli_error($conn));
-   
-   // or die jika data gagal ditambahkan atau cara dua 
-   // cara dua - jika data gagal ditambhakan
-   
-   //echo mysqli_error($conn);
-
-   // untuk memberithau mysql yg berubah dimysql baik berambah,hilang/dihapus atau dimodifikasi
-   return mysqli_affected_rows($conn);
- }
-
 function hapus ($id) 
 {
   $conn = koneksi();
@@ -128,6 +149,8 @@ function hapus ($id)
   if($dr['gambar'] != 'nophoto.jpg') {
   unlink('img/' . $dr['gambar']);
   }
+
+  // jalankan query nya
   mysqli_query($conn, "DELETE FROM dokter WHERE id = $id") or die (mysqli_error($conn));
 
   return mysqli_affected_rows($conn);
@@ -144,12 +167,14 @@ function ubah($data)
    $spesialis = htmlspecialchars ($data['spesialis']);
    $gambar_lama = htmlspecialchars ($data['gambar_lama']);
 
-
+   // false terjadi karena file terlalu besar, yang diupload bukan gambar
    $gambar = upload();
    if (!$gambar) {
      return false;
    }
 
+
+   // ketika user tidak ingin upload gambar baruk
    if($gambar == 'nophoto.jpg') {
      $gambar = $gambar_lama;
    }
@@ -162,7 +187,8 @@ function ubah($data)
               gambar = '$gambar_lama'
 
               WHERE id = $id";
-
+   
+   // jalankan query nya
    mysqli_query($conn, $query) or die (mysqli_error($conn));
    
    // or die jika data gagal diubah atau cara dua 
@@ -201,6 +227,7 @@ function ubah($data)
     $username = htmlspecialchars($data['username']);
     $password = htmlspecialchars($data['password']);
 
+    // user = table baru (relasi)
     // check dulu username
     if ($user= query("SELECT * FROM user WHERE username = '$username' ")) {
     
@@ -218,6 +245,7 @@ function ubah($data)
         'error' => true,
         'pesan' => 'Username / Password salah !'
       ];
+      // array akan masuk kedalam variabel login
   }
   
   function registrasi($data)
@@ -225,8 +253,11 @@ function ubah($data)
     $conn = koneksi();
 
     $username = htmlspecialchars (strtolower ($data['username']) );
+   
+    // untuk menghindari script jahat yang protect nya sekarang sql nya
     $password1 = mysqli_real_escape_string($conn, $data['password1']);
     $password2 = mysqli_real_escape_string($conn, $data['password2']);
+     // untuk menghindari sql injection
 
     //jika username & password kosong
     if ( empty($username) || empty($password1) || empty($password2))
@@ -250,7 +281,7 @@ function ubah($data)
     return false;
     }
     
-    //jika konfrimasi passsword tidak sama
+    //jika konfirmasi passsword tidak sama
     if ($password1 !== $password2 )
     {
       echo "<script>
@@ -262,7 +293,7 @@ function ubah($data)
     }
 
     // Jika password < 5 digit
-    if (strlen($password1) < 5 )
+    if (strlen($password1) < 5 ) // strlen = hitung panjang string
     {
       echo "<script>
               alert('Password terlalu pendek');
@@ -273,7 +304,7 @@ function ubah($data)
     }
 
     // Jika username & password sudah sesuai
-    // enkripsi password
+    // enkripsi password > paramater yang mau diacak & apa algoritmanya
     $password_baru = password_hash($password1, PASSWORD_DEFAULT);
 
     // Insert ke table user
@@ -282,6 +313,7 @@ function ubah($data)
     (null, '$username', '$password_baru')
     ";
     
+    // jalankan query nya
     mysqli_query($conn, $query) or die (mysqli_error($conn));
     return mysqli_affected_rows($conn);
   }

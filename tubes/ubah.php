@@ -5,12 +5,13 @@
   //jika session 'login' tidak ada maka :
   if (!isset($_SESSION['login']))
   {
-    header("Location: login.php");
+    header("Location: halaman-depan.php");
+    // header di repo belum dirubah masih ke login.php
   }
   
   require 'functions.php';
 
-// jika tidak ada id di url
+//karena ubah butuh id, jika tidak ada id di url = error
 if (!isset($_GET['id'])) 
 {
   header("Location: index.php");
@@ -55,6 +56,8 @@ if (isset($_POST['ubah'])) {
 <body>
 
     <form action="" method="POST" enctype="multipart/form-data">
+      <!-- value = untuk mengambil data dari array -->
+      <!-- input id = hide ( agar tidak terlihat user ) -->
       <input type="hidden" name="id" autofocus required value="<?= $dr['id']; ?>">
       <h3 class="heading">Form ubah Data Dokter</h3>
       <ul>

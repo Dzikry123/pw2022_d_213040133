@@ -14,6 +14,9 @@ require 'functions.php';
 // ambil id dari url
 $id = $_GET['id'];
 
+// query dokter berdasarkan id
+$dr = query("SELECT * FROM dokter WHERE id = $id");
+
 // jika tidak ada id di url
 if (!isset($_GET['id'])) 
 {
@@ -26,9 +29,6 @@ if (!isset($_GET['id']))
 if(isset($_POST['pdf'])){
         header("location:pdf.php");
     }
-
-// query dokter berdasarkan id
-$dr = query("SELECT * FROM dokter WHERE id = $id");
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +68,10 @@ $dr = query("SELECT * FROM dokter WHERE id = $id");
     <div class="link">
     <a href="ubah.php?id=<?= $dr['id']; ?>" class="ubah">Ubah</a><a href="hapus.php?id=<?= $dr['id']; ?>"  
     onclick="return confirm('apakah anda yakin ingin menghapus data ini ?');" class="hapus">Hapus</a>
-    </div>    
+    </div>  
+
+      <!-- php?id untuk mengirim data  -->
+      <!-- indikasi programnya jalan = lihat id nya saat href disorot muncul atau tidak -->
   
     <a href="" class="report">PDF Reporting</a>
 

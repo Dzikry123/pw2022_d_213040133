@@ -5,11 +5,13 @@ session_start();
 //jika session 'login' tidak ada maka :
 if (!isset($_SESSION['login']))
 {
-  header("Location: login.php");
+  header("Location: halaman-depan.php");
   exit;
 }
 
 require 'functions.php';
+
+//isi dari $dokter = panggil fungsi query
 $dokter = query("SELECT * FROM dokter ");
 
 // ketika tombol cari di klik
@@ -66,6 +68,7 @@ $dokter = query("SELECT * FROM dokter ");
       <th class="aksi">Aksi</th>
     </tr>
 
+    <!-- jika data/nama tidak ditemukan -->
     <?php if(empty($dokter)) :?>
       <tr>
         <td colspan="4">
@@ -73,12 +76,17 @@ $dokter = query("SELECT * FROM dokter ");
         </td>
       </tr>
     <?php endif; ?>
+
+  <!-- looping $dokter as $dr -->
+  <!-- $i ++ untuk auto increment -->
+  
   <?php $i = 1; foreach( $dokter as $dr) : ?>
     <tr>
       <td class="nomor"><?= $i++; ?></td>
       <td class="gambar"><img src="img/<?= $dr['gambar']; ?>"></td>
       <td class="nama"><?= $dr['nama']; ?></td>
       <td class="aksi">
+        <!-- href = mengirim id dari ['$id'] -->
         <a href="detail.php?id=<?= $dr['id']; ?>">lihat detail</a>
       </td>
     </tr>

@@ -4,12 +4,6 @@ session_start();
 
 require 'functions.php';
 $dokter = query("SELECT * FROM dokter ");
-
-// ketika tombol cari di klik
-  if (isset($_POST['cari']))
-  {
-    $dokter = cari ($_POST['keyword']);
-  }
 ?>
 
 

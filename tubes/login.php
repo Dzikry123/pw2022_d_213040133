@@ -35,7 +35,8 @@
     <img src="img/nophoto.jpg" alt="Avatar" class="avatar">
   </div>
    <ul>
-    <!-- jika username / password salah tampilkan ini -->
+    <!-- jika ada error = username / password salah,
+     tampilkan ini -->
  <?php if(isset($login['error'])) : ?>
   <p style="color: red; font-style: italic;"><?= $login['pesan']; ?></p>
  <?php endif; ?>
